@@ -28,11 +28,9 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `asistensio`
 --
 
-CREATE TABLE `asistensio` (
+CREATE TABLE `asistencia` (
   `NC` int(9) NOT NULL,
-  `dia` int(2) DEFAULT NULL,
-  `mes` int(2) DEFAULT NULL,
-  `año` int(4) DEFAULT NULL
+  `fecha` datetime() DEFAULT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
 -- --------------------------------------------------------
@@ -55,9 +53,9 @@ CREATE TABLE `biometrico` (
 
 CREATE TABLE `horario` (
   `NC` int(9) NOT NULL,
-  `nombre` int(50) DEFAULT NULL,
-  `apellidop` int(50) DEFAULT NULL,
-  `apellidom` int(50) DEFAULT NULL,
+  `nombre` text NOT NULL,
+  `apellidop` text NOT NULL,
+  `apellidom` text NOT NULL,
   `materia` text COLLATE armscii8_bin
 ) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
 
@@ -82,7 +80,7 @@ CREATE TABLE `profesores` (
 --
 -- Indices de la tabla `asistensio`
 --
-ALTER TABLE `asistensio`
+ALTER TABLE `asistencia`
   ADD PRIMARY KEY (`NC`);
 
 --
@@ -123,7 +121,7 @@ ALTER TABLE `horario`
 -- Filtros para la tabla `profesores`
 --
 ALTER TABLE `profesores`
-  ADD CONSTRAINT `profesores_ibfk_1` FOREIGN KEY (`nc`) REFERENCES `asistensio` (`NC`);
+  ADD CONSTRAINT `profesores_ibfk_1` FOREIGN KEY (`nc`) REFERENCES `asistencia` (`NC`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
